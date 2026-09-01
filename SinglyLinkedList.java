@@ -70,14 +70,17 @@ public class SinglyLinkedList<E> {
         StringBuilder sb = new StringBuilder();
         Node current = head;
         if (current == null){
-            return "";
+            return "[]";
         }
+        sb.append("[");
 
         while (current != tail){
             sb.append(current.getElement());
+            sb.append(", ");
             current = current.getNext();
         }
         sb.append(current.getElement());
+        sb.append("]");
 
         return sb.toString();
 
