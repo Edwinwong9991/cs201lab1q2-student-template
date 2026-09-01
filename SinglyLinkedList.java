@@ -95,6 +95,7 @@ public class SinglyLinkedList<E> {
         if (head.getNext() == null){
             head = null;
             tail = null;
+            size--;
             return curr.getElement();
         } else {
             curr = head.getNext();
@@ -107,6 +108,7 @@ public class SinglyLinkedList<E> {
 
         prev.setNext(null);
         tail = prev;
+        size--;
         return curr.getElement();
     }
 
