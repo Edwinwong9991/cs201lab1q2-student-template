@@ -66,9 +66,10 @@ public class SinglyLinkedList<E> {
     }
 
     // Write your codes below
+    @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        Node current = head;
+        Node<E> current = head;
         if (current == null){
             return "";
         }
@@ -87,38 +88,37 @@ public class SinglyLinkedList<E> {
     }
 
     public E removeLast(){
-        Node prev = head;
-        Node curr = head;
-        if (head == null){
-            return null;
-        }
-        if (head.getNext() == null){
-            head = null;
-            tail = null;
-            size--;
-            return curr.getElement();
-        } else {
-            curr = head.getNext();
-        }
-
-        while (curr != tail){
-            prev = prev.getNext();
-            curr = curr.getNext();
-        }
-
-        prev.setNext(null);
-        tail = prev;
-        size--;
-        return curr.getElement();
+    if (head == null){
+        return null;
     }
+    if (head.getNext() == null){
+        E answer = head.getElement();
+        head = null;
+        tail = null;
+        size--;            
+        return answer;
+    }
+
+    Node<E> prev = head;
+    Node<E> curr = head.getNext();
+    while (curr != tail){
+        prev = prev.getNext();
+        curr = curr.getNext();
+    }
+
+    prev.setNext(null);
+    tail = prev;
+    size--;                 
+    return curr.getElement();
+}
 
     public void reverse(){  
         if (head == null){
             return;
         }
-        Node prev = head;
-        Node curr = null;
-        Node move = null;
+        Node<E> prev = head;
+        Node<E> curr = null;
+        Node<E> move = null;
 
         if (head.getNext() != null && head.getNext().getNext() != null){
             curr = head.getNext();
